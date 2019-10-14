@@ -13,3 +13,5 @@ tests/compile/*compiler*.jar
 local_build/*compiler*.jar
 local_build/local_*_compressed.js
 dist/
+
+/.idea

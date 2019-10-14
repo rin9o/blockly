@@ -48,6 +48,14 @@ goog.require('Blockly.Msg');
  * them to msg/json/qqq.json, and they show up in the translation console.
  */
 
+// TensorFlow blocks
+/// Create tensor title
+Blockly.Msg.TENSORFLOW_TENSOR_TITLE = 'Create tensor values %1 shape %2';
+/// Create tensor help url
+Blockly.Msg.TENSORFLOW_TENSOR_HELPURL = '';
+/// Create tensor tooltip
+Blockly.Msg.TENSORFLOW_TENSOR_TOOLTIP = 'Create a tensor:';
+
 /// {{Notranslate}} Hue value for all logic blocks.
 Blockly.Msg.LOGIC_HUE = '210';
 /// {{Notranslate}} Hue value for all loop blocks.
@@ -66,6 +74,8 @@ Blockly.Msg.VARIABLES_HUE = '330';
 Blockly.Msg.VARIABLES_DYNAMIC_HUE = '310';
 /// {{Notranslate}} Hue value for all procedure blocks.
 Blockly.Msg.PROCEDURES_HUE = '290';
+/// {{Notranslate}} Hue value for all tensorflow blocks.
+Blockly.Msg.TENSORFLOW_DATA_HUE = '180';
 
 /// default name - A simple, general default name for a variable, preferably short.
 /// For more context, see
