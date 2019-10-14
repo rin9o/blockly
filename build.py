@@ -299,7 +299,27 @@ class Gen_compressed(threading.Thread):
   def do_compile(self, params, target_filename, filenames, remove):
     # Send the request to Google.
     headers = {"Content-type": "application/x-www-form-urlencoded"}
-    conn = httplib.HTTPSConnection("closure-compiler.appspot.com")
+    # Read HTTPS Proxy from environment variables
+    env_https_proxy = os.environ['HTTPS_PROXY']
+    global https_proxy_host
+    global https_proxy_port
+    if len(env_https_proxy) > 0:
+      host_start_idx = env_https_proxy.index('//')
+      if host_start_idx == -1:
+        host_start_idx = 0
+      else:
+        host_start_idx += len('//')
+      host_end_idx = env_https_proxy.rindex(':')
+      if host_end_idx == -1:
+        host_end_idx = len(env_https_proxy)
+      else:
+        https_proxy_port = env_https_proxy[host_end_idx + 1:]
+      https_proxy_host = env_https_proxy[host_start_idx:host_end_idx]
+    if len(https_proxy_host) > 0:
+      conn = httplib.HTTPSConnection(https_proxy_host, https_proxy_port)
+    else:
+      conn = httplib.HTTPSConnection("closure-compiler.appspot.com")
+    conn.set_tunnel("closure-compiler.appspot.com")
     conn.request("POST", "/compile", urlencode(params), headers)
     response = conn.getresponse()
 

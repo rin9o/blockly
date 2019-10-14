@@ -93,7 +93,8 @@ def main():
         key = match.group(1)
         value = match.group(2).replace("\\'", "'")
         if not description:
-          print('Warning: No description for ' + result['meaning'])
+          if ('result' in locals() or 'result' in globals()) and result is not None:
+            print('Warning: No description for ' + result['meaning'])
         if (description and _CONSTANT_DESCRIPTION_PATTERN.search(description)):
           constants[key] = value
         else:
