@@ -51,10 +51,24 @@ goog.require('Blockly.Msg');
 // TensorFlow blocks
 /// Create tensor title
 Blockly.Msg.TENSORFLOW_TENSOR_TITLE = 'Create tensor values %1 shape %2';
-/// Create tensor help url
-Blockly.Msg.TENSORFLOW_TENSOR_HELPURL = '';
 /// Create tensor tooltip
 Blockly.Msg.TENSORFLOW_TENSOR_TOOLTIP = 'Create a tensor:';
+/// Create scalar title
+Blockly.Msg.TENSORFLOW_SCALAR_TITLE = 'Create a scalar value %1';
+/// Create scalar tooltip
+Blockly.Msg.TENSORFLOW_SCALAR_TOOLTIP = 'Create a scalar:';
+/// Clone tensor title
+Blockly.Msg.TENSORFLOW_CLONE_TITLE = 'Clone tensor %1';
+/// Clone tensor tooltip
+Blockly.Msg.TENSORFLOW_CLONE_TOOLTIP = 'Clone a tensor:';
+/// Complex tensor title
+Blockly.Msg.TENSORFLOW_COMPLEX_TITLE = 'Complex tensor %1 and %2';
+/// Complex tensor tooltip
+Blockly.Msg.TENSORFLOW_COMPLEX_TOOLTIP = 'Complex two tensor';
+/// Create sequential title
+Blockly.Msg.TENSORFLOW_SEQUENTIAL_TITLE = 'Create sequential model';
+/// Create sequential tooltip
+Blockly.Msg.TENSORFLOW_SEQUENTIAL_TOOLTIP = 'Create a sequential model:';
 
 /// {{Notranslate}} Hue value for all logic blocks.
 Blockly.Msg.LOGIC_HUE = '210';

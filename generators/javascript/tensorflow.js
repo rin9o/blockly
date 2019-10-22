@@ -28,15 +28,47 @@ goog.provide('Blockly.JavaScript.tensorflow');
 
 goog.require('Blockly.JavaScript');
 
+/*
+ * Helper methods
+ */
+const valueToCode = (block, argName) =>
+  Blockly.JavaScript.valueToCode(block, argName, Blockly.JavaScript.ORDER_COMMA);
+const returnCode = (code) =>
+  [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+
+/*
+ * Tensors
+ */
+
+Blockly.JavaScript['tensorflow_scalar'] = function(block) {
+  // Create scalar model
+  let value = valueToCode(block, 'VALUE') || 'null';
+  return returnCode(`tf.scalar(${value})`);
+};
 
 Blockly.JavaScript['tensorflow_tensor'] = function(block) {
   // Create a 2D tensor
-  let values = Blockly.JavaScript.valueToCode(
-    block, 'VALUES', Blockly.JavaScript.ORDER_COMMA
-  ) || 'null';
-  let shape = Blockly.JavaScript.valueToCode(
-    block, 'SHAPE', Blockly.JavaScript.ORDER_COMMA
-  ) || 'null';
-  const code = `tf.tensor2d(${values}, ${shape})`;
-  return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+  let values = valueToCode(block, 'VALUES') || 'null';
+  let shape = valueToCode(block, 'SHAPE') || 'null';
+  return returnCode(`tf.tensor2d(${values}, ${shape})`);
+};
+
+Blockly.JavaScript['tensorflow_clone'] = function(block) {
+  let src = valueToCode(block, 'SOURCE') || 'null';
+  return returnCode(`${src}.clone()`);
+};
+
+Blockly.JavaScript['tensorflow_complex'] = function(block) {
+  let real = valueToCode(block, 'REAL') || 'null';
+  let imag = valueToCode(block, 'IMAG') || 'null';
+  return returnCode(`tf.complex(${real}, ${imag})`);
+};
+
+/*
+ * Models
+ */
+
+Blockly.JavaScript['tensorflow_sequential'] = function(block) {
+  // Create a sequential
+  return returnCode(`tf.sequential()`);
 };
