@@ -35,6 +35,18 @@ const valueToCode = (block, argName) =>
   Blockly.JavaScript.valueToCode(block, argName, Blockly.JavaScript.ORDER_COMMA);
 const returnCode = (code) =>
   [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+const createSimpleGeneratorFunc = (code) => function(block) {
+  const args = code.match(/(~\w*~)+/g);
+  let generatedCode = code;
+  for (let i = 0; i < args.length(); i++) {
+    let arg = args[i];
+    if (arg instanceof String) {
+      const argKey = arg.replace('~', '');
+      generatedCode = generatedCode.replace(arg, valueToCode(block, argKey) || 'null');
+    }
+  }
+  return returnCode(generatedCode);
+};
 
 /*
  * Tensors
@@ -52,6 +64,120 @@ Blockly.JavaScript['tensorflow_tensor'] = function(block) {
   let shape = valueToCode(block, 'SHAPE') || 'null';
   return returnCode(`tf.tensor2d(${values}, ${shape})`);
 };
+
+Blockly.JavaScript['tensorflow_complex'] = function(block) {
+  let real = valueToCode(block, 'REAL');
+  let imag = valueToCode(block, 'IMAG');
+  return returnCode(`tf.complex(${real}, ${imag})`);
+};
+
+Blockly.JavaScript['tensorflow_eye'] = function(block) {
+  let numRows = valueToCode(block, 'NUM_ROWS');
+  let numColumns = valueToCode(block, 'NUM_COLUMNS');
+  return returnCode(`tf.eye(${numRows}, ${numColumns}`);
+};
+
+Blockly.JavaScript['tensorflow_fill'] = function(block) {
+  let shape = valueToCode(block, 'SHAPE');
+  let value = valueToCode(block, 'VALUE');
+  return returnCode(`tf.fill(${shape}, ${value})`);
+};
+
+Blockly.JavaScript['tensorflow_imag'] = createSimpleGeneratorFunc(
+  'tf.imag(~SOURCE~)'
+);
+
+Blockly.JavaScript['tensorflow_linspace'] = createSimpleGeneratorFunc(
+  'tf.linspace(~START~, ~STOP~, ~NUM~)'
+);
+
+Blockly.JavaScript['tensorflow_oneHot'] = createSimpleGeneratorFunc(
+  'tf.oneHot(~INDICES~, ~DEPTH~)'
+);
+
+Blockly.JavaScript['tensorflow_ones'] = createSimpleGeneratorFunc(
+  'tf.ones(~SHAPE~)'
+);
+
+Blockly.JavaScript['tensorflow_onesLike'] = createSimpleGeneratorFunc(
+  'tf.onesLike(~SHAPE~)'
+);
+
+Blockly.JavaScript['tensorflow_print'] = createSimpleGeneratorFunc(
+  '~SOURCE~.print()'
+);
+
+Blockly.JavaScript['tensorflow_range'] = createSimpleGeneratorFunc(
+  'tf.range(~START~, ~STOP~, ~STEP~)'
+);
+
+Blockly.JavaScript['tensorflow_real'] = createSimpleGeneratorFunc(
+  'tf.real(~SOURCE~)'
+);
+
+Blockly.JavaScript['tensorflow_truncatedNormal'] = createSimpleGeneratorFunc(
+  'tf.truncatedNormal(~SHAPE~)'
+);
+
+Blockly.JavaScript['tensorflow_variable'] = createSimpleGeneratorFunc(
+  'tf.variable(~INITIAL_VALUE~, ~TRAINABLE~, ~NAME~)'
+);
+
+Blockly.JavaScript['tensorflow_zeros'] = createSimpleGeneratorFunc(
+  'tf.zeros(~SHAPE~)'
+);
+
+Blockly.JavaScript['tensorflow_zerosLike'] = createSimpleGeneratorFunc(
+  'tf.zerosLike(~SOURCE~)'
+);
+
+Blockly.JavaScript['tensorflow_tensor_flatten'] = createSimpleGeneratorFunc(
+  '~SOURCE~.flatten()'
+);
+
+Blockly.JavaScript['tensorflow_tensor_clone'] = createSimpleGeneratorFunc(
+  '~SOURCE~.clone()'
+);
+
+Blockly.JavaScript['tensorflow_variable_assign'] = createSimpleGeneratorFunc(
+  '~SOURCE~.assign(~NEW_VALUE~)'
+);
+
+Blockly.JavaScript['tensorflow_concat'] = createSimpleGeneratorFunc(
+  'tf.concat(~TENSORS~)'
+);
+
+Blockly.JavaScript['tensorflow_concat_two'] = createSimpleGeneratorFunc(
+  'tf.concat([~FIRST~, ~SECOND~])'
+);
+
+Blockly.JavaScript['tensorflow_gather'] = createSimpleGeneratorFunc(
+  '~SOURCE~.gather(~INDICES~)'
+);
+
+Blockly.JavaScript['tensorflow_reverse'] = createSimpleGeneratorFunc(
+  '~SOURCE~.reverse()'
+);
+
+Blockly.JavaScript['tensorflow_slice'] = createSimpleGeneratorFunc(
+  '~SOURCE~.slice(~BEGIN~, ~SIZE~)'
+);
+
+Blockly.JavaScript['tensorflow_split'] = createSimpleGeneratorFunc(
+  '~SOURCE~.split(~NUM_OR_SIZE_SPLITS~)'
+);
+
+Blockly.JavaScript['tensorflow_stack'] = createSimpleGeneratorFunc(
+  'tf.stack(~TENSORS~)'
+);
+
+Blockly.JavaScript['tensorflow_tile'] = createSimpleGeneratorFunc(
+  '~SOURCE~.tile(~REPS~)'
+);
+
+Blockly.JavaScript['tensorflow_unstack'] = createSimpleGeneratorFunc(
+  'tf.unstack(~SOURCE~)'
+);
 
 Blockly.JavaScript['tensorflow_clone'] = function(block) {
   let src = valueToCode(block, 'SOURCE') || 'null';

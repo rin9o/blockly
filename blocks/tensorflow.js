@@ -298,7 +298,7 @@ const tf_zeros = {
   "message0": titleRes('ZEROS'),
   "args0": [{
     "type": "input_value",
-    "name": "VALUE",
+    "name": "SHAPE",
     "check": "Array"
   }],
   "output": "TfTensor",
@@ -351,7 +351,11 @@ const tf_tensor_clone = {
 const tf_variable_assign = {
   "type": "tensorflow_variable_assign",
   "message0": titleRes('VARIABLE_ASSIGN'),
-  "args0": [createTensorSourceArg()],
+  "args0": [createTensorSourceArg(), {
+    "type": "input_value",
+    "name": "NEW_VALUE",
+    "check": "TfTensor"
+  }],
   "output": null,
   "colour": DATA_HUE,
   "helpUrl": "",
