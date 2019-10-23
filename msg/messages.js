@@ -57,6 +57,98 @@ Blockly.Msg.TENSORFLOW_TENSOR_TOOLTIP = 'Create a tensor:';
 Blockly.Msg.TENSORFLOW_SCALAR_TITLE = 'Create a scalar value %1';
 /// Create scalar tooltip
 Blockly.Msg.TENSORFLOW_SCALAR_TOOLTIP = 'Create a scalar:';
+/// Complex tensor title
+Blockly.Msg.TENSORFLOW_COMPLEX_TITLE = 'Complex tensors real %1 imag %s';
+/// Complex tensor tooltip
+Blockly.Msg.TENSORFLOW_COMPLEX_TOOLTIP = 'Complex tensors:';
+/// Create eye tensor title
+Blockly.Msg.TENSORFLOW_EYE_TITLE = 'Create an identity matrix with %1 rows and %2 columns';
+/// Create eye tensor tooltip
+Blockly.Msg.TENSORFLOW_EYE_TOOLTIP = 'Create an identity matrix:';
+/// Create filled tensor title
+Blockly.Msg.TENSORFLOW_FILL_TITLE = 'Create a tensor filled with a scalar value %1';
+/// Create filled tensor tooltip
+Blockly.Msg.TENSORFLOW_FILL_TOOLTIP = 'Create a tensor filled with a scalar value:';
+/// Return imag part title
+Blockly.Msg.TENSORFLOW_IMAG_TITLE = 'Return the imaginary part of %1';
+/// Return imag part tooltip
+Blockly.Msg.TENSORFLOW_IMAG_TOOLTIP = 'Return the imaginary part of tensor';
+/// linspace title
+Blockly.Msg.TENSORFLOW_LINSPACE_TITLE = 'Return an evenly spaced sequence of numbers, start %1 to stop %2 num %3';
+/// linspace tooltip
+Blockly.Msg.TENSORFLOW_LINSPACE_TOOLTIP = 'tf.linspace()';
+/// Create one-hot tensor title
+Blockly.Msg.TENSORFLOW_ONE_HOT_TITLE = 'Create a one-hot tensor indices %1 depth %2';
+/// Create one-hot tensor tooltip
+Blockly.Msg.TENSORFLOW_ONE_HOT_TOOLTIP = 'Create a one-hot tensor';
+/// Create all-ones tensor title
+Blockly.Msg.TENSORFLOW_ONES_TITLE = 'Create a tensor with all elements set to 1, shape %1';
+/// Create all-ones tensor tooltip
+Blockly.Msg.TENSORFLOW_ONES_TOOLTIP = 'Create a tensor with all elements set to 1:';
+/// Create all-ones tensor with the same shape as the given tensor title
+Blockly.Msg.TENSORFLOW_ONES_LIKE_TITLE = 'Create a tensor with all elements set to 1 with the same shape as %1';
+/// Create all-ones tensor with the same shape as the given tensor tooltip
+Blockly.Msg.TENSORFLOW_ONES_LIKE_TOOLTIP = 'tf.onesLike()';
+/// Print tensor title
+Blockly.Msg.TENSORFLOW_PRINT_TITLE = 'Print tensor %1 for debug';
+/// Print tensor tooltip
+Blockly.Msg.TENSORFLOW_PRINT_TOOLTIP = 'Print tensor for debug:';
+/// Create range tensor title
+Blockly.Msg.TENSORFLOW_RANGE_TITLE = 'Create a tensor filled with the numbers from %1 to %2 step %3';
+/// Create range tensor tooltip
+Blockly.Msg.TENSORFLOW_RANGE_TOOLTIP = 'Create a tensor filled with the numbers in the range:';
+/// Return real part title
+Blockly.Msg.TENSORFLOW_REAL_TITLE = 'Return the real part of %1';
+/// Return real part tooltip
+Blockly.Msg.TENSORFLOW_REAL_TOOLTIP = 'Return the real part of tensor:';
+/// truncatedNormal title & tooltip
+Blockly.Msg.TENSORFLOW_TRUNCATED_NORMAL_TITLE = 'Create a tensor with values sampled from a truncated normal distribution, shape %1';
+Blockly.Msg.TENSORFLOW_TRUNCATED_NORMAL_TOOLTIP = 'tf.truncatedNormal';
+/// Create a new variable title & tooltip
+Blockly.Msg.TENSORFLOW_VARIABLE_TITLE = 'Create a variable with initial value %1';
+Blockly.Msg.TENSORFLOW_VARIABLE_TOOLTIP = 'Create a variable with initial value:';
+/// Create zero tensor title & tooltip
+Blockly.Msg.TENSORFLOW_ZEROS_TITLE = 'Create a tensor with all elements set to 0, shape %1';
+Blockly.Msg.TENSORFLOW_ZEROS_TOOLTIP = 'Create a tensor with all elements set to 0.';
+/// Create zero tensor with same shape as the given tensor title & tooltip
+Blockly.Msg.TENSORFLOW_ZEROS_LIKE_TITLE = 'Create a tensor with all elements set to 1 with the same shape as %1';
+Blockly.Msg.TENSORFLOW_ZEROS_LIKE_TOOLTIP = 'Create a tensor with all elements set to 1 with the same shape as the given tensor';
+/// tf.Tensor#flatten() title & tooltip
+Blockly.Msg.TENSORFLOW_FLATTEN_TITLE = 'Flatten tensor %1';
+Blockly.Msg.TENSORFLOW_FLATTEN_TOOLTIP = 'Flatten a tensor to a 1D Array';
+/// tf.Tensor#asScalar() title & tooltip
+Blockly.Msg.TENSORFLOW_AS_SCALAR_TITLE = 'Convert tensor %1 to scalar';
+Blockly.Msg.TENSORFLOW_AS_SCALAR_TOOLTIP = 'Convert tensor to scalar';
+/// tf.Variable#assign() title & tooltip
+Blockly.Msg.TENSORFLOW_VARIABLE_ASSIGN_TITLE = 'Assign tensor %2 to variable %1';
+Blockly.Msg.TENSORFLOW_VARIABLE_ASSIGN_TOOLTIP = 'Assign a new tensor to a variable';
+/// Concat tensors title & tooltip
+Blockly.Msg.TENSORFLOW_CONCAT_TITLE = 'Concat tensors array %1';
+Blockly.Msg.TENSORFLOW_CONCAT_TOOLTIP = 'Concat tensors:';
+/// Concat two tensors title & tooltip
+Blockly.Msg.TENSORFLOW_CONCAT_TWO_TITLE = 'Concat tensors %1 and %2';
+Blockly.Msg.TENSORFLOW_CONCAT_TWO_TOOLTIP = 'Concat two tensors';
+/// tf.Tensor#gather() title & tooltip
+Blockly.Msg.TENSORFLOW_GATHER_TITLE = 'Gather slices from tensor %1 according to indices %2';
+Blockly.Msg.TENSORFLOW_GATHER_TOOLTIP = 'tf.Tensor#gather(x, indices, axis?)';
+/// tf.Tensor#reverse() title & tooltip
+Blockly.Msg.TENSORFLOW_REVERSE_TITLE = 'Reverse tensor %1';
+Blockly.Msg.TENSORFLOW_REVERSE_TOOLTIP = 'Reverse tensor:';
+/// tf.Tensor#slice() title & tooltip
+Blockly.Msg.TENSORFLOW_SLICE_TITLE = 'Extracts a slice from tensor %1 starting at coordinates %2';
+Blockly.Msg.TENSORFLOW_SLICE_TOOLTIP = 'tf.Tensor#slice(begin, size?)';
+/// tf.Tensor#split() title & tooltip
+Blockly.Msg.TENSORLFOW_SPLIT_TITLE = 'Split tensor %1 into sub tensors, numOrSizeSplits %2';
+Blockly.Msg.TENSORFLOW_SPLIT_TOOLTIP = 'tf.Tensor#split(x, numOrSizeSplits, axis?)';
+/// tf.Tensor#stack() title & tooltip
+Blockly.Msg.TENSORFLOW_STACK_TITLE = 'Stack a list of rank-R tensors %2 into one rank-(R+1) tensor';
+Blockly.Msg.TENSORFLOW_STACK_TOOLTIP = 'tf.stack(tensors, axis?)';
+/// tf.Tensor#tile() title & tooltip
+Blockly.Msg.TENSORFLOW_TILE_TITLE = 'Construct tensor %1 by repeating it the number of times given by reps %2';
+Blockly.Msg.TENSORFLOW_TILE_TOOLTIP = 'tf.tile(x, reps)';
+/// tf.Tensor#unstack() title & tooltip
+Blockly.Msg.TENSORFLOW_UNSTACK_TITLE = 'Unstack a tensor %1 of rank-R into a list of rank-(R-1) tensors';
+Blockly.Msg.TENSORFLOW_UNSTACK_TOOLTIP = 'tf.unstack(x, axis?)';
 /// Clone tensor title
 Blockly.Msg.TENSORFLOW_CLONE_TITLE = 'Clone tensor %1';
 /// Clone tensor tooltip

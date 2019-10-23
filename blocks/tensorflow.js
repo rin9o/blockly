@@ -372,6 +372,24 @@ const tf_concat = {
   "helpUrl": "",
   "tooltip": tooltipRes('CONCAT')
 };
+/// Block for tf.concat([first, second])
+const tf_concat_two = {
+  "type": "tensorflow_concat_two",
+  "message0": titleRes('CONCAT_TWO'),
+  "args0": [{
+    "type": "input_value",
+    "name": "FIRST",
+    "check": "TfTensor"
+  }, {
+    "type": "input_value",
+    "name": "SECOND",
+    "check": "TfTensor"
+  }],
+  "output": "TfTensor",
+  "colour": DATA_HUE,
+  "helpUrl": "",
+  "tooltip": tooltipRes('CONCAT_TWO')
+};
 /// Block for tf.gather(x, indices, axis?)
 const tf_gather = {
   "type": "tensorflow_gather",
@@ -513,7 +531,33 @@ const tf_sequential = {
 Blockly.defineBlocksWithJsonArray([
   tf_scalar,
   tf_tensor,
-  tf_clone,
+  tf_concat,
+  tf_concat_two,
+  tf_eye,
+  tf_fill,
+  tf_gather,
+  tf_imag,
+  tf_linspace,
+  tf_oneHot,
+  tf_ones,
+  tf_onesLike,
+  tf_print,
+  tf_range,
+  tf_real,
+  tf_reverse,
+  tf_slice,
+  tf_split,
+  tf_truncatedNormal,
+  tf_tile,
+  tf_variable,
+  tf_variable_assign,
+  tf_stack,
+  tf_unstack,
+  tf_zeros,
+  tf_zerosLike,
+  tf_tensor_asScalar,
+  tf_tensor_clone,
+  tf_tensor_flatten,
   tf_complex,
   tf_sequential,
 ]);
