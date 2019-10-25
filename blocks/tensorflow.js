@@ -31,10 +31,10 @@ goog.require('Blockly');
 
 // Create helpers
 function titleRes(methodName) {
-  return `%{BKY_TENSORFLOW_${methodName}_TITLE`;
+  return `%{BKY_TENSORFLOW_${methodName}_TITLE}`;
 }
 function tooltipRes(methodName) {
-  return `%{BKY_TENSORFLOW_${methodName}_TOOLTIP`;
+  return `%{BKY_TENSORFLOW_${methodName}_TOOLTIP}`;
 }
 function createTensorSourceArg(receiveArray) {
   let checkTypes = "TfTensor";
@@ -84,7 +84,8 @@ const tf_scalar = {
   "output": "TfTensor",
   "colour": DATA_HUE,
   "helpUrl": "",
-  "tooltip": tooltipRes('SCALAR')
+  "tooltip": tooltipRes('SCALAR'),
+  "extensions": ["parent_tooltip_when_inline"]
 };
 /// Block for complex tensor
 const tf_complex = {

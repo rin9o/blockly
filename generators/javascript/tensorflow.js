@@ -179,11 +179,6 @@ Blockly.JavaScript['tensorflow_unstack'] = createSimpleGeneratorFunc(
   'tf.unstack(~SOURCE~)'
 );
 
-Blockly.JavaScript['tensorflow_clone'] = function(block) {
-  let src = valueToCode(block, 'SOURCE') || 'null';
-  return returnCode(`${src}.clone()`);
-};
-
 Blockly.JavaScript['tensorflow_complex'] = function(block) {
   let real = valueToCode(block, 'REAL') || 'null';
   let imag = valueToCode(block, 'IMAG') || 'null';
