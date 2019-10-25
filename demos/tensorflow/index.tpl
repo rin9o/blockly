@@ -7,6 +7,7 @@
   <script src="../../blocks_compressed.js"></script>
   <script src="../../javascript_compressed.js"></script>
   <script src="../../msg/js/en.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
   <style>
     body {
       background-color: #fff;

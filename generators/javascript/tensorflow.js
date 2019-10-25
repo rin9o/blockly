@@ -36,14 +36,17 @@ const valueToCode = (block, argName) =>
 const returnCode = (code) =>
   [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
 const createSimpleGeneratorFunc = (code) => function(block) {
-  const args = code.match(/(~\w*~)+/g);
+  let args = code.match(/(~\w*~)+/g);
+  if (args instanceof String) {
+    args = [args];
+  } else if (!(args instanceof Array)) {
+    args = [];
+  }
   let generatedCode = code;
-  for (let i = 0; i < args.length(); i++) {
+  for (let i = 0; i < args.length; i++) {
     let arg = args[i];
-    if (arg instanceof String) {
-      const argKey = arg.replace('~', '');
-      generatedCode = generatedCode.replace(arg, valueToCode(block, argKey) || 'null');
-    }
+    const argKey = arg.replace(/~/g, '');
+    generatedCode = generatedCode.replace(arg, valueToCode(block, argKey) || 'null');
   }
   return returnCode(generatedCode);
 };
