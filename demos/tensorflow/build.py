@@ -2,32 +2,66 @@ import re
 from pprint import pprint
 
 BLOCK_TAG_FORMAT = '      <block type="%s"></block>\n'
-GENERATOR_REG = '(Blockly.JavaScript\[[\'\"]tensorflow_\w+[\'\"]\])+'
+TF_BLOCK_REG = '(Blockly.JavaScript\[[\'\"]tensorflow_\w+[\'\"]\])+'
+TF_HELPER_BLOCK_REG = '(Blockly.JavaScript\[[\'\"]tf_helper_\w+[\'\"]\])+'
+
+blocks_rules = []
 
 
-def build_demo_page():
-  content = ''
-  with open('../../generators/javascript/tensorflow.js') as f:
-    for line in f.readlines():
-      content += line
-  res = re.findall(GENERATOR_REG, content)
-  res = [x[20: -2] for x in res]
-  print('Load blocks from "generators/javascript/tensorflow.js:"')
-  pprint(res)
-  tensorflow_blocks_content = ''
-  for block_name in res:
-    tensorflow_blocks_content += BLOCK_TAG_FORMAT % block_name
+def common_reg_result_to_id(x):
+  return x[20: -2]
 
+
+def add_blocks_rule(template_key, generator_src_path, method_id_reg,
+                    method_reg_result_to_id):
+  blocks_rules.append({
+    'key': template_key,
+    'src': generator_src_path,
+    'reg': method_id_reg,
+    'reg_to_id': method_reg_result_to_id
+  })
+
+
+def build_demo_page(template_file, output_file):
+  # Read template from file
   template_content = ''
-  with open('index.tpl') as f:
+  with open(template_file) as f:
     for line in f.readlines():
       template_content += line
-  output_content = template_content.replace(
-    '{{ tensorflow_blocks }}', tensorflow_blocks_content)
-  with open('index.html', mode='w') as output_file:
-    output_file.write(output_content)
+
+  # Resolve content according to block rules
+  for rule in blocks_rules:
+    key = rule['key']
+    src_path = rule['src']
+    reg = rule['reg']
+    reg_to_id = rule['reg_to_id']
+
+    generator_content = ''
+    with open(src_path) as f:
+      for line in f.readlines():
+        generator_content += line
+    res = re.findall(reg, generator_content)
+    res = [reg_to_id(x) for x in res]
+    print('Load blocks count %d from "%s"' % (len(res), src_path))
+    tensorflow_blocks_content = ''
+    for block_name in res:
+      tensorflow_blocks_content += BLOCK_TAG_FORMAT % block_name
+    print('Added blocks tags to %s' % key)
+    template_content = template_content.replace(
+      '{{ %s }}' % key, tensorflow_blocks_content)
+
+  with open(output_file, mode='w') as output_file:
+    output_file.write(template_content)
   print('Finished building tensorflow demo page.')
 
 
 if __name__ == '__main__':
-  build_demo_page()
+  add_blocks_rule(template_key='tensorflow_blocks',
+                  generator_src_path='../../generators/javascript/tensorflow.js',
+                  method_id_reg=TF_BLOCK_REG,
+                  method_reg_result_to_id=common_reg_result_to_id)
+  add_blocks_rule(template_key='tensorflow_helper_blocks',
+                  generator_src_path='../../generators/javascript/tensorflow_helper.js',
+                  method_id_reg=TF_HELPER_BLOCK_REG,
+                  method_reg_result_to_id=common_reg_result_to_id)
+  build_demo_page('index.tpl', 'index.html')

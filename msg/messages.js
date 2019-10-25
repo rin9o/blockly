@@ -48,6 +48,9 @@ goog.require('Blockly.Msg');
  * them to msg/json/qqq.json, and they show up in the translation console.
  */
 
+// TensorFlow helper blocks
+Blockly.Msg.TF_HELPER_CREATE_ARRAY_FROM_JSON_TITLE = 'Create array from JSON %1';
+
 // TensorFlow blocks
 /// Create tensor title
 Blockly.Msg.TENSORFLOW_TENSOR_TITLE = 'Create tensor values %1 shape %2';

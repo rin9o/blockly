@@ -39,6 +39,9 @@
     <category name="TensorFlow" colour="%{BKY_TENSORFLOW_DATA_HUE}">
 {{ tensorflow_blocks }}
     </category>
+    <category name="TF Helper" colour="%{BKY_TENSORFLOW_DATA_HUE}">
+{{ tensorflow_helper_blocks }}
+    </category>
     <category name="Logic" colour="%{BKY_LOGIC_HUE}">
       <block type="controls_if"></block>
       <block type="logic_compare"></block>
